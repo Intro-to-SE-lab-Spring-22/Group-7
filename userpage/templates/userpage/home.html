@@ -1,0 +1,36 @@
+{% load static %}
+<a href="https://codepen-api-export-production.s3.us-west-2.amazonaws.com/zip/PEN/pyBNzX/1578778289271/pure-css-gradient-background-animation.zip" class="btn btn-outline-light" aria-current="page"></a>
+<link rel="stylesheet" type="text/css" href="{% static 'userpage/style.css' %}">
+<p class="title">Account Settings</p>
+<div class="login_box" id="post1">
+	<h3 class="marg_z">Change profile picture</h3><br>
+	<form method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+		{{ form.as_p}}
+		<input type="submit" value="Submit">
+	</form>
+	<p class="or"><span>or</span></p>
+	<h3 class="marg_z">Change profile data</h3><br>
+	<form action="{% url 'chng_data' user_id %}" method="post">
+	{% csrf_token %}
+		<h4 class="marg_z">Username</h4><input type="text" value = "{{ user.user_name }}" placeholder="Username ..." name="user_name"/><br>
+		<h4 class="marg_z">Email</h4><input type="text" value = "{{ user.email }}" placeholder="Email ..." name="email"/><br>
+		<h4 class="marg_z">Phone</h4><input type="tel" id="phone" value="{{user.phone}}" placeholder="###-###-####"name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br>
+		<h4 class="marg_z">Gender</h4><input type="text" value="{{user.gender}}" placeholder="Gender ..." name="gender"/><br>
+		<br><input type="submit" value="Submit">
+	</form>
+	<p class="or"><span>or</span></p>
+	<h3 class="marg_z">Delete account</h3><br>
+	<form action="{% url 'delete' user.id %}" method="post">
+	{% csrf_token %}
+		<input hidden type="text" value="3" name="del">
+		<input type="submit" value="Delete" />
+	</form>
+	<p class="or"><span>or</span></p>
+	<h3 class="marg_z">Return to Account Page</h3><br>
+	<form action="{% url 'page' user_id %}" method="post">
+	{% csrf_token %}
+		<input type="submit" value="Return">
+	</form>
+
+</div>
