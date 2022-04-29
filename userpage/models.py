@@ -7,10 +7,18 @@ class User(models.Model):
 	user_name = models.CharField(max_length=50)
 	password = models.CharField(max_length=64, default="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855")
 	start_date = models.DateTimeField('date published')
+	title = models.CharField(max_length = 200)
+	img = models.ImageField(upload_to = '', default = 'test.jpg')
+	email = models.CharField(max_length=200)
+	phone = models.CharField(default=0, max_length = 20)
+	list_size = models.IntegerField(default=15)
+	gender = models.CharField(max_length = 20)
+	birthday = models.DateField()
 	def __str__(self):
 		return self.user_name
 	def was_published_recently(self):
-		return self.start_dat >= timezone.now() - datetime.timedelta(days=1)
+		now = timezone.now()
+		return now - datetime.timedelta(days=1) <= self.start_date <= now
 
 class Post(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -25,6 +33,7 @@ class Post(models.Model):
 class Comment(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
 	post = models.ForeignKey(Post, on_delete=models.CASCADE)
+	pub_date = models.DateTimeField('date published')
 	comment_text = models.CharField(max_length=256)
 	def __str__(self):
 		return self.comment_text
