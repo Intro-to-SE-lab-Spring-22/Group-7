@@ -42,6 +42,11 @@ div
   	display: flex;
 }
 
+.navrow
+{
+	width: 30%;
+	margin-left:35%;
+}
 
 .col2
 {
@@ -49,7 +54,14 @@ div
 	height:22px;
 }
 
-.poster_id, .post_like, .post_comment, .post_share, .post_edit, .del_post
+.nav
+{
+	margin-top: 0px;	
+	margin-bottom: 0px;
+	text-align: center;
+}
+
+.poster_id, .post_like, .post_comment, .post_share, .post_edit, .del_post, .nav
 {
   	flex:16.6%;
 	height: 18px;
