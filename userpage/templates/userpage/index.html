@@ -5,7 +5,7 @@
 <p class="title">KOOBECAF</p>
 <div class="login_box" id="post1" {% if start == "signup" %}style="display: none;"{% endif %}>
 	<h3 class="marg_z">Login</h3><br>
-	<form action="{% url 'signin' %}" method="post">
+	<form action="{% url 'sign_in' %}" method="post">
 	{% csrf_token %}
 		<h4 class="marg_z">Username</h4><input type="text" placeholder="Username ..." name="username"/><br>
 		<h4 class="marg_z">Password</h4><input type="text" placeholder="Password ..." name="password"/><br>
@@ -27,11 +27,15 @@
 
 <div class="login_box" id="edit1" {% if start == "login" %}style="display: none;"{% endif %}>
 	<h3 class="marg_z">Sign Up</h3><br>
-	<form action="{% url 'newacc' %}" method="post">
+	<form action="{% url 'new_acc' %}" method="post">
 	{% csrf_token %}
 		<h4 class="marg_z">Username</h4><input type="text" placeholder="new account" name="newname"/><br>
 		<h4 class="marg_z">Password</h4><input type="text" placeholder="new password" name="newpass"/><br>
 		<h4 class="marg_z">Confirm Password</h4><input type="text" placeholder="confirm new password" name="newpassconf"/><br>
+		<h4 class="marg_z">Phone</h4><input type="tel" id="phone" value="{{user.phone}}" placeholder="###-###-####"name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br>
+		<h4 class="marg_z">Email</h4><input type="text" name="email" placeholder="account@address.com" /><br>
+		<h4 class="marg_z">Birthday</h4><input type="date" name="birthday" /><br> 
+		<h4 class="marg_z">Gender</h4><input type="text" name="gender" /><br>
 		<input type="submit" value="create" />
 	</form>
 	{% if error == "prev_acc" %}
